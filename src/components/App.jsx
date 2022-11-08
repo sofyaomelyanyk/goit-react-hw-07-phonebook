@@ -14,7 +14,6 @@ import {
 } from 'redux/selectors/contactsSelectors';
 import { selectFilter } from 'redux/filter/filterSelectors';
 import { useEffect } from 'react';
-
 import { Section } from './Section/Section';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
