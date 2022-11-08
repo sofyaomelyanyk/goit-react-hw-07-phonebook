@@ -8,43 +8,47 @@ import {
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {
-    contacts: [],
-    isLoading: false,
-    error: null,
+    contacts: {
+      contacts: [],
+      isLoading: false,
+      error: null,
+    },
   },
   extraReducers: {
-    [fetchContacts.pending]: ({ isLoading }) => {
-      isLoading = true;
+    [fetchContacts.pending]: state => {
+      state.contacts.isLoading = true;
     },
-    [fetchContacts.fulfilled]: ({ contacts, isLoading }, { payload }) => {
-      contacts = payload;
-      isLoading = false;
+    [fetchContacts.fulfilled]: (state, { payload }) => {
+      state.contacts.contacts = payload;
+      state.contacts.isLoading = false;
     },
-    [fetchContacts.rejected]: ({ error, isLoading }, { payload }) => {
-      error = payload;
-      isLoading = false;
+    [fetchContacts.rejected]: (state, { payload }) => {
+      state.contacts.error = payload;
+      state.contacts.isLoading = false;
     },
-    [addContacts.pending]: ({ isLoading }) => {
-      isLoading = true;
+    [addContacts.pending]: state => {
+      state.contacts.isLoading = true;
     },
-    [addContacts.fulfilled]: ({ contacts, isLoading }, { payload }) => {
-      contacts = contacts.push(payload);
-      isLoading = false;
+    [addContacts.fulfilled]: (state, { payload }) => {
+      state.contacts.contacts.push(payload);
+      state.contacts.isLoading = false;
     },
-    [addContacts.rejected]: ({ error, isLoading }, { payload }) => {
-      error = payload;
-      isLoading = false;
+    [addContacts.rejected]: (state, { payload }) => {
+      state.contacts.error = payload;
+      state.contacts.isLoading = false;
     },
-    [deleteContacts.pending]: ({ isLoading }) => {
-      isLoading = true;
+    [deleteContacts.pending]: state => {
+      state.contacts.isLoading = true;
     },
-    [deleteContacts.fulfilled]: ({ contacts, isLoading }, { payload }) => {
-      contacts = contacts.filter(({ id }) => id !== payload);
-      isLoading = false;
+    [deleteContacts.fulfilled]: (state, { payload }) => {
+      state.contacts.contacts = state.contacts.contacts.filter(
+        ({ id }) => id !== payload
+      );
+      state.contacts.isLoading = false;
     },
-    [deleteContacts.rejected]: ({ error, isLoading }, { payload }) => {
-      error = payload;
-      isLoading = false;
+    [deleteContacts.rejected]: (state, { payload }) => {
+      state.contacts.error = payload;
+      state.contacts.isLoading = false;
     },
   },
 });

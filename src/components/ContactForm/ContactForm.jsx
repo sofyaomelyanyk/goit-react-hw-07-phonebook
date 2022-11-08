@@ -28,8 +28,6 @@ export const ContactForm = ({addContact}) => {
 
     addContact({name, number});
     
-    
-
     resetForm();
   };
 

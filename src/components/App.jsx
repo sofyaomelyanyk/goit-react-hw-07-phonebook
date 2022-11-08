@@ -66,10 +66,12 @@ export const App = () => {
       </Section>
       <Section title="Contacts">
         <Filter filter={filterContacts} changeFilter={changeFilter} />
-        <ContactsList
+        {isLoading && <Loader/>}
+        {error && <h2>{error}</h2> }
+        {!isLoading && <ContactsList
           contacts={filterContactsList}
           deleteContact={contactDelete}
-        />
+        /> }
       </Section>
     </>
   );
