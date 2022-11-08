@@ -20,6 +20,8 @@ import { Filter } from './Filter/Filter';
 import { ContactsList } from './ContactsList/ContactsList';
 import { Loader } from './Loader/Loader';
 
+
+
 export const App = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
